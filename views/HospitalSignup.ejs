@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sign-up</title>
+<link rel="stylesheet" href="/css/signup.css">
+<link rel="stylesheet" href="\css\home.css">
+<script src="\js\angular.min.js"></script>
+<script>
+  var err = "<%= error %>";
+  if (err!="") {
+    alert(err);
+  }
+</script>
+</head>
+<body ng-app="" style="background-attachment:fixed;">
+<div ng-include="'/navbar'"></div><br><br><br><br><br><br><br><br><br>
+<div class="container">
+    <input type="checkbox" id="switch">
+    <label for="switch">
+      <b class="top"></b>
+      <b class="bottom"></b>
+    </label>
+  <div class="login">
+    <h1>Sign-up</h1>
+    <form action="hospital_signup_submit" method="POST">
+      <p>
+        <label for="user">User Name</label>
+        <input type="text" name="username" id="username">
+      </p>
+      <p>
+        <label for="pass">Password</label>
+        <input type="password" name="password" id="password">
+      </p>
+	  	  <p>
+        <label for="user">Hospital Name</label>
+        <input type="text" name="name">
+      </p>
+      <p>
+        <label for="pass">Working Hours</label>
+        <input type="text" name="work_hours">
+      </p>
+	  <p>
+        <label for="user">Phone</label>
+        <input type="number" ng-model="phone" name="phone" ng-blur="checkPh()">
+      </p>
+	  <p>
+        <label for="user">Email</label>
+        <input type="text" ng-model="email" ng-blur="checkmail()" name="email">
+      </p>
+	  <p>
+        <label for="user">Description</label>
+        <input type="text" name="description">
+      </p>
+	  <span>Already have an account?</span><u><a style="color:blue;" href="/HospitalLogin">Login!</a></u>
+      <p>
+        <input type="submit" value="sign up">
+      </p>
+
+    </form>
+  </div>
+
+</div>
+</body>
+</html>

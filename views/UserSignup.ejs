@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sign-up</title>
+<link rel="stylesheet" href="/css/signup.css">
+<script src="\js\angular.min.js"></script>
+<script src="\js\signup.js"></script>
+<script>
+    var err = "<%= error %>";
+    if (err!="") {
+      alert(err);
+    }
+</script>
+<link rel="stylesheet" href="\css\home.css">
+</head>
+<body style="background-attachment: fixed;height: 100vh;" ng-app="myApp", ng-controller="myCtrl">
+  <div ng-include="'/navbar'" method="GET"></div><br><br><br><br><br>
+  <br><br><br><br>
+<div class="container">
+    <input type="checkbox" id="switch">
+    <label for="switch">
+      <b class="top"></b>
+      <b class="bottom"></b>
+    </label>
+  <div class="login">
+    <h1>Sign-up</h1>
+    <form action="/user_signup_submit" method="POST">
+      <p>
+        <label for="user">User Name</label>
+        <input type="text" name="username" id="username">
+      </p>
+      <p>
+        <label for="pass">Password</label>
+        <input type="password" name="password" id="password">
+      </p>
+	  <p>
+        <label for="pass">Confirm Password</label>
+        <input type="password" id="conf_password">
+      </p>
+	  	  <p>
+        <label for="user">Name</label>
+        <input type="text" name="name">
+      </p>
+	  <p>
+        <label for="user">Phone</label>
+        <input type="number" ng-model="phone" name="phone" ng-blur="checkPh()">
+      </p>
+	  <p>
+        <label for="user">Email</label>
+        <input type="text" ng-model="email" ng-blur="checkmail()" name="email">
+      </p>
+	  <p>
+        <label for="user">Address</label>
+        <input type="text" name="address">
+      </p>
+
+	  <span>Already have an account?</span><u><a style="color:blue;" href="/UserLogin">Login!</a></u>
+      <p>
+        <input type="submit" value="sign up">
+      </p>
+    </form>
+  </div>
+</div>
+<br><br>
+</body>
+</html>

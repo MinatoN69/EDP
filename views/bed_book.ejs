@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<head>
+<title>Book Bed</title>
+<script src="/js/angular.min.js"></script>
+<style type="text/css">
+* {
+margin : 0 ;
+padding : 0 ;
+}
+body {
+
+background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 1, 0.7)), url('/img/5.jpg');
+background-repeat:no-repeat;
+background-position : center;
+background-size : cover ;
+font-family : sans-serif ;
+margin-top : 40px;
+height: 100vh;
+overflow: hidden;
+}
+.regform{
+  width:800px;
+  background-color: rgb(0,0,0,0.6);
+  margin: auto;
+  color: #ffffff;
+  padding: 10px 0px 10px 0px;
+  text-align: center;
+  border-radius: 15px 15px 0px 0px;
+}
+.main{
+  background-color: rgb(0,0,0,0.5);
+  width:800px;
+  margin: auto;
+}
+form{
+  padding: 10px;
+}
+#name{
+  width: 100%;
+  height: 100px;
+}
+.name {
+margin-left : 25px ;
+margin-top : 30px ;
+width : 125px ;
+color : white ;
+font-size : 18px ;
+font-weight : 700 ;
+}
+
+
+.dob{
+position : relative;
+left: 200px ;
+top: -37px ;
+line-height : 40px ;
+width : 480px ;
+border-radius : 6px ;
+padding : 0 22px;
+font-size : 16px ;
+color : #555 ;
+}
+
+
+.email{
+position : relative;
+left: 200px ;
+top: -37px ;
+line-height : 40px ;
+width : 480px ;
+border-radius : 6px ;
+padding : 0 22px;
+font-size : 16px ;
+color : #555 ;
+}
+
+.applying{
+position : relative;
+left: 200px ;
+top: -37px ;
+line-height : 40px ;
+width : 480px ;
+border-radius : 6px ;
+padding : 0 22px;
+font-size : 16px ;
+color : #555 ;
+}
+
+.mark{
+position : relative;
+left: 200px ;
+top: -37px ;
+line-height : 40px ;
+width : 480px ;
+border-radius : 6px ;
+padding : 0 22px;
+font-size : 16px ;
+color : #555 ;
+}
+
+button{
+background-color : #2C907C ;
+display : block;
+margin : 20px 0px 0px 20px;
+text-align : center ;
+border-radius : 12px ;
+border : 2px solid #2A524A;
+padding : 14px 110px;
+outline : none ;
+color : white;
+cursor : pointer ;
+transition : 0.25px;
+}
+button:hover{
+background-color : #5390F5 ;
+}
+</style>
+<script src="/js/bed_book.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+<div class="regform"><h1 style="float:left;padding:3px;"> Book for Bed </h1><span style="float: right;padding: 3px;font-size:30px;">{{theTime}}</span><br><br></div>
+<div class="main">
+<form name="schoolform" style="border:1px solid #ccc">
+<h2 class="name"> Enter Id </h2>
+<input class ="dob" ng-model="id" id="School_id" type="number">
+<h2 class="name"> Name </h2>
+<input class ="email" id="School_name" type="text" ng-model="name">
+<h2 class ="name"> Email </h2>
+<input class ="applying" id="Standard" type="text" ng-model="email" ng-blur="checkmail()">
+<h2 class ="name"> Phone </h2>
+<input class ="mark" id="No._of_Seats" type="number" ng-model="phone" ng-blur="checkPh()">
+<h2 class ="name"> Reason (optional) </h2>
+<input class ="applying" id="Standard" type="text" ng-model="reason">
+<BR>
+<center>
+<button type="submit">Update</button>
+</center>
+</form>
+</div>
+<body>
+</html>

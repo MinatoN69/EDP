@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>User</title>
+<link rel="stylesheet" href="\css\home.css">
+<script src="\js\angular.min.js"></script>
+<script>
+  var err = "<%= error %>";
+  if (err!="") {
+    alert(err);
+  }
+</script>
+<link rel="stylesheet" href="/css/login.css">
+</head>
+<body ng-app="" style="height: 100vh;">
+<div ng-include="'/navbar'" method="GET"></div><br><br><br><br><br>
+<br><br><br><br>
+<div class="container">
+    <input type="checkbox" id="switch">
+    <label for="switch">
+      <b class="top"></b>
+      <b class="bottom"></b>
+    </label><br><br><br>
+  <div class="login">
+    <h1>Login</h1>
+    <form action="/user_login_submit" method="POST">
+      <p>
+        <label for="user">User Name</label>
+        <input type="text" name="user" id="user">
+      </p>
+      <p>
+        <label for="pass" >Password</label>
+        <input type="password" name="pswd" id="pswd">
+      </p>
+	  <span>No account?</span> &nbsp;&nbsp;<u><a href="/UserSignup" style="color:blue;">Sign up!</a></u>
+      <p>
+        <input type="submit" value="login">
+      </p>
+
+    </form>
+  </div>
+</div>
+</body>
+</html>

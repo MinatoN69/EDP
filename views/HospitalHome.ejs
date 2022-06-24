@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <title>
+      LifeCare-Hospital
+    </title>
+    <link rel="stylesheet" href="\css\home.css">
+    <script src="\js\angular.min.js"></script>
+    <style>
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      .dropdown-content a:hover {background-color: #ddd;}
+      .dropdown:hover .dropdown-content {display: block;}
+      .dropdown:hover .dropbtn {background-color: #3e8e41;}
+      body {
+        background: linear-gradient(rgba(0, 0, 1, 1), rgba(1, 0, 0, 0.5)), url("/img/home_bg0.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow: hidden;
+      }
+      .bgcolor {
+        background-color:#46866C;
+        transition: all ease-in-out 300ms;
+        width: 100%;
+      }
+      section img {
+        position: absolute;
+        top: 0px;
+      }
+    </style>
+    <script>
+      function changeBg()
+      {
+        let navbar= document.getElementById("navbar");
+        let scrollbar= window.scrollY;
+        if (scrollbar < 80) {
+          navbar.classList.remove("bgcolor");
+        }
+        else {
+          navbar.classList.add("bgcolor")
+        }
+      }
+      window.addEventListener('scroll', changeBg);
+    </script>
+    <script>
+      var err = "<%= error %>";
+      if (err!="") {
+        alert(err);
+      }
+    </script>
+</head>
+<body ng-app="">
+  <div ng-include="'/Hospitalnavbar'"></div>
+<br><br><br><br><br>
+<section>
+  <div class="title1"><img src="/img/logo.png" style="width:250px; height:250px;">
+  <div class="title" style="padding-left: 230px;"><br><span>Welcome</span>
+  <span>
+    &nbsp;&nbsp;To Update Bed Availability, <a target="_blank" href="/update_bed_availability">Click Here</a><br><br>
+    &nbsp;&nbsp;To Look about Appointment, <a href="/check_appointments">Click Here</a><br><br>
+    &nbsp;&nbsp;To Look about Virtual Consultation, <a href="/virtual_appointments">Click Here</a><br><br>
+</span>
+</div></div>
+</section>
+</body>
+</html>

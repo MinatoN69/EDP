@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+<title>Appointments</title>
+<script src="/js/angular.min.js"></script>
+<script src="/js/constraints.js"></script>
+<style type="text/css">
+* {
+  margin : 0 ;
+  padding : 0 ;
+}
+body {
+background: linear-gradient(rgba(0, 0, 1, 0), rgba(1, 0, 0, 0.5)), url('/img/3.jpg');
+background-repeat:no-repeat;
+background-size : cover ;
+font-family : sans-serif ;
+height: 100vh;
+overflow: hidden;
+}
+.regform{
+  width:800px;
+  background-color: rgb(0,0,0,0.6);
+  margin: auto;
+  color: #ffffff;
+  padding: 10px 0px 10px 0px;
+  text-align: center;
+  border-radius: 15px 15px 0px 0px;
+}
+.main{
+  background-color: rgb(0,0,0,0.5);
+  width:800px;
+  margin: auto;
+}
+form{
+  padding: 10px;
+}
+#name{
+  width: 100%;
+  height: 100px;
+  /* width: 120px; */
+}
+.name {
+margin-left : 20px ;
+margin-top : 30px ;
+width : 300px ;
+color : white ;
+font-size : 18px ;
+font-weight : 700 ;
+}
+
+
+.dob{
+position : relative;
+left: 200px ;
+top: -37px ;
+line-height : 40px ;
+width : 480px ;
+border-radius : 6px ;
+padding : 0 22px;
+font-size : 16px ;
+color : #555 ;
+}
+
+
+.email{
+position : relative;
+left: 200px ;
+top: -37px ;
+line-height : 40px ;
+width : 480px ;
+border-radius : 6px ;
+padding : 0 22px;
+font-size : 16px ;
+color : #555 ;
+}
+
+.applying{
+position : relative;
+left: 200px ;
+top: -37px ;
+line-height : 40px ;
+width : 480px ;
+border-radius : 6px ;
+padding : 0 22px;
+font-size : 16px ;
+color : #555 ;
+}
+
+.mark{
+position : relative;
+left: 200px ;
+top: -37px ;
+line-height : 40px ;
+width : 480px ;
+border-radius : 6px ;
+padding : 0 22px;
+font-size : 16px ;
+color : #555 ;
+}
+
+button{
+background-color : #2C907C ;
+display : block;
+margin : 20px 0px 0px 20px;
+text-align : center ;
+border-radius : 12px ;
+border : 2px solid #2A524A;
+padding : 14px 110px;
+outline : none ;
+color : white;
+cursor : pointer ;
+transition : 0.25px;
+}
+button:hover{
+background-color : #5390F5 ;
+}
+
+</style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl"><br><br><br>
+<div class="regform"><h1 style="float:left;padding:3px;"> Appointment </h1><span style="float: right;padding: 3px;font-size:30px;">{{theTime}}</span><br><br></div>
+<div class="main">
+<form name="schoolform" style="border:1px solid #ccc" action="/appointment_fix" method="POST">
+
+
+<h2 class="name"> Age </h2>
+<input class ="dob" name="age" id="School_id" type="number" ng-model="age" ng-blur="checkage()">
+
+
+<h2 class="name"> Problem </h2>
+<input class ="email" name="problem" id="School_name" type="text" name="School_name">
+
+<h2 class ="name"> Hospital Name </h2>
+<input class ="applying" name="hospital" id="Standard" type="text" name="Standard">
+
+<h2 class ="name"> Date of Appointment</h2>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input class ="mark" name="date" id="No._of_Seats" type="date" style="width: 350px;" name="No._of_Seats">
+
+<h2 class ="name"> Time of Appointment</h2>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input class ="mark" name="time" id="No._of_Seats" type="time" style="width: 350px;" name="No._of_Seats">
+
+<br><center>
+<button type="submit">SUBMIT</button></center><br>
+</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+<script src="/js/angular.min.js"></script>
+<script src="/js/hospitalconstraints.js"></script>
+<title>Update Bed Availability</title>
+<style type="text/css">
+* {
+margin : 0 ;
+padding : 0 ;
+}
+body {
+background: linear-gradient(rgba(0, 0, 2, 0.7), rgba(1, 0, 0, 0)), url('/img/2.jpg');
+height: 100%;
+background-position : center;
+background-size : cover;
+background-repeat: no-repeat;
+height: 100vh;
+font-family : sans-serif ;
+margin-top : 40px;
+overflow: hidden;
+}
+.regform{
+  width:800px;
+  background-color: rgb(0,0,0,0.6);
+  margin: auto;
+  color: #ffffff;
+  padding: 10px 0px 10px 0px;
+  text-align: center;
+  border-radius: 15px 15px 0px 0px;
+}
+.main{
+  background-color: rgb(0,0,0,0.5);
+  width:800px;
+
+  margin: auto;
+}
+form{
+  padding: 10px;
+}
+#name{
+  width: 100%;
+  height: 100px;
+}
+.name {
+margin-left : 25px ;
+margin-top : 30px ;
+width : 125px ;
+color : white ;
+font-size : 18px ;
+font-weight : 700 ;
+}
+
+
+.dob{
+position : relative;
+left: 200px ;
+top: -37px ;
+line-height : 40px ;
+width : 480px ;
+border-radius : 6px ;
+padding : 0 22px;
+font-size : 16px ;
+color : #555 ;
+}
+
+
+.email{
+position : relative;
+left: 200px ;
+top: -37px ;
+line-height : 40px ;
+width : 480px ;
+border-radius : 6px ;
+padding : 0 22px;
+font-size : 16px ;
+color : #555 ;
+}
+
+
+button{
+background-color : #2C907C ;
+display : block;
+margin : 20px 0px 0px 20px;
+text-align : center ;
+border-radius : 12px ;
+border : 2px solid #2A524A;
+padding : 14px 110px;
+outline : none ;
+color : white;
+cursor : pointer ;
+transition : 0.25px;
+}
+button:hover{
+background-color : #E13D15 ;
+}
+
+</style>
+
+
+</head>
+<body>
+  <br><Br><Br><Br><Br><br><br><Br><br><br>
+<div class="regform"><h1>Update Bed Availability </h1></div>
+<div class="main" ng-app="myApp" ng-controller="myCtrl">
+<form action="/update_bed_submit" style="border:1px solid #ccc" method="POST">
+
+
+<h2 class="name"> Enter total no. of beds </h2>
+<input class ="dob" ng-model="total_beds" name="total_beds" type="number" ng-blur="bedcheck(total_beds)">
+
+
+<h2 class="name"> Enter no. of beds available </h2>
+<input class ="email" name="beds_avail" type="number" ng-model="available_beds" ng-blur="bedcheck(available_beds);logiccheck(total_beds,available_beds)">
+
+
+<BR><center>
+<button type="submit">UPDATE</button></center><br><br>
+
+
+</form>
+</div>
+<body>
+</html>

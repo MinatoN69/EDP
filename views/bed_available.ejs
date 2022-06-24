@@ -1,0 +1,162 @@
+<html>
+  <head>
+    <title>
+      LifeCare
+    </title>
+  <script src="/js/angular.min.js"></script>
+  <link rel="stylesheet" href="\css\External.css">
+  <link rel="stylesheet" href="\css\home.css">
+  </head>
+  <style>
+    body {
+      background: linear-gradient(rgba(0, 0, 2, 0.7), rgba(1, 0, 0, 0.5)), url("/img/bed_bg2.jpg");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+
+  #bed_avail td, #bed_avail th {
+    border: 2px solid #ddd;
+    padding: 8px;
+  }
+
+  #bed_avail tr{color: white;}
+  #bed_avail td {padding: 20px;text-align: center;font-size: 20px;}
+  #bed_avail td:hover {color: black;background-color: #ddd;font-size:25px;}
+  #bed_avail th {
+    padding: 20px;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+  }
+  .button { 
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    border: 2px solid #008CBA;
+    border-radius: 10px;
+  }
+
+  .button2:hover {
+    background-color: #008CBA;
+    color: white;
+  }
+  .bgcolor {
+    background-color: purple;
+    transition: all ease-in-out 300ms;
+    width: 100%;
+  }
+  </style>
+  <script>
+    function changeBg()
+    {
+      let navbar= document.getElementById("navbar");
+      let scrollbar= window.scrollY;
+      if (scrollbar < 80){
+        navbar.classList.remove("bgcolor");
+      }
+      else{
+        navbar.classList.add("bgcolor")
+      }
+    }window.addEventListener('scroll', changeBg);
+  </script>
+  <body ng-app="myApp">
+    <div ng-include="'/navbar'" method="GET"></div>
+    <br><br><br><br>
+    <br><br><br><br>
+    <div ng-controller="myController">
+      <center>
+        <div id="id01" class="modal" style="padding-top: 130px;height: 75%;">
+          <div class="modal-content animate">
+            <div class="imgcontainer">
+              <h2>Enter The Details: </h2>
+              <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal" style="top:0px;">&times;</span>
+            </div>
+            <div class="container" style="color:black;font-family: MV Boli;font-size: 20px;">
+              <div class="panel" id="pane"><form id="subform" action="/book_bed" method="POST">
+                Name: <input type="text" name="name" /><br><br>Email: <input type="email" name="email" /><br><br>Phone: <input type="text" name="phone" /><br><br>
+                <input type="hidden" id="id" name="id">Reason(Optional): <textarea rows="4" cols="35" name="reason" form="subform"></textarea><br><br><center><button class="button button2" type="submit" style="padding-top: 12px;height: 40px;color:black;">Submit</button></center>
+              </div>
+            </div>
+        </div>
+        </div>
+      <center><input type="text" style="text-align:left;border: 1px solid black;height:40px;width:200px;background:transparent;color:white;font-size:18px;" ng-model="inp_det" placeholder="Enter the Hospital Name" /></center>
+      <span style="width: 100px;color:white">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span>
+      <div id="summa" style="height:100vh;width:100%;overflow:auto">
+        <br><br>
+        <table id='bed_avail' ng-controller="tableController">
+          <tr style='background: linear-gradient(to right, #0f0c29, #302b63, #24243e);opacity:0.6'>
+            <th style="cursor: pointer;" ng-click="orderfn('id')">Id</th>
+            <th style="cursor: pointer;" ng-click="orderfn('name')">Hospital Name</th>
+            <th style="cursor: pointer;" ng-click="orderfn('phone')">Phone</th>
+            <th style="cursor: pointer;" ng-click="orderfn('working_hours')">Working Hours</th>
+            <th style="cursor: pointer;" ng-click="orderfn('description')">Description</th>
+            <th style="cursor: pointer;" ng-click="orderfn('total_beds')">Total Beds</th>
+            <th style="cursor: pointer;" ng-click="orderfn('beds_available')">Beds Available</th>
+            <th style="cursor: pointer;" ng-click="orderfn('fees')">Fees</th>
+            <th>Click Below to Book</th>
+          </tr>
+          <tr ng-repeat = "detail in details | filter: {name:inp_det} | orderBy: cate">
+            <td>{{detail.id}}</td>
+            <td>{{detail.name}}</td>
+            <td>{{detail.phone}}</td>
+            <td>{{detail.working_hours}}</td>
+            <td>{{detail.description}}</td>
+            <td>{{detail.total_beds}}</td>
+            <td>{{detail.beds_available}}</td>
+            <td>&#8377;{{detail.fees | fee_filter}}</td>
+            <td ><button id="{{detail.phone}}" class="button button2" onclick="updateid(this.id),document.getElementById('id01').style.display='block'">Book a bed</button></td>
+          </tr>
+        </table>
+        <br><br>
+      </div>
+      </center>
+      </div>
+  </body>
+  <script>
+    var modal = document.getElementById('id01');
+    function updateid(id) {
+      document.getElementById("id").value = id;
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    var x = JSON.parse("<%= data %>".replaceAll("&#34;",'"').replaceAll("working hours","working_hours").replaceAll("total beds","total_beds").replaceAll("beds available","beds_available"));
+    var app = angular.module("myApp",[]);
+    app.controller("myController",function($scope) {
+      $scope.orderfn = function(x1) {
+        $scope.cate = x1;
+      }
+    });
+    app.controller("tableController", function($scope) {
+      $scope.details= x;
+    });
+
+    app.filter("fee_filter", function() {
+      return function(x) {
+        if ((x%10)<5) {
+          return x-(x%10);
+        }
+        else {
+          return x-(x%10)+10;
+        }
+      }
+    });
+  </script>
+</html>
+
+

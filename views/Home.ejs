@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>
+      LifeCare
+    </title>
+    <link rel="stylesheet" href="css\home.css">
+    <script src="js\angular.min.js"></script>
+    <style>
+      body {
+        background: linear-gradient(rgba(0, 0, 2, 0.7), rgba(1, 0, 0, 0)), url("img/internet-heartbeat.gif");
+        background-repeat: no-repeat;
+        background-size: 100% 95%;
+        overflow: hidden;
+      }
+      .bgcolor {
+        background-color:#46866C;
+        transition: all ease-in-out 300ms;
+        width: 100%;
+      }
+      section img {
+        position: absolute;
+        top: 0px;
+
+      }
+    </style>
+    <script>
+      function changeBg()
+      {
+        let navbar= document.getElementById("navbar");
+        let scrollbar= window.scrollY;
+        if (scrollbar < 80) {
+          navbar.classList.remove("bgcolor");
+        }
+        else {
+          navbar.classList.add("bgcolor")
+        }
+      }
+      window.addEventListener('scroll', changeBg);
+    </script>
+</head>
+<body ng-app="">
+<div ng-include="'/navbar'" method="GET"></div><br><br><br><br><br>
+<section>
+  <div class="title1"><img src="/img/logo.png" style="width:200px; height:200px;">
+  <div class="title"><br><span>Welcome</span>
+  <span>&nbsp;&nbsp;We are LifeCare.<a href="/about">Know about us</a><br><br>&nbsp;&nbsp;To know about Bed Availability, <a href="/bed_available">Click Here</a></span>
+</div></div>
+</section>
+
+  </body>
+</html>

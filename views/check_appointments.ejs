@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      LifeCare
+    </title>
+  <script src="/js/angular.min.js"></script>
+  <link rel="stylesheet" href="\css\home.css">
+  </head>
+  <style>
+    body {
+      background: linear-gradient(rgba(0, 0, 2, 0.7), rgba(1, 0, 0, 0.5)), url("/img/bed_bg2.jpg");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+  #bed_avail td, #bed_avail th {
+    border: 2px solid #ddd;
+    padding: 8px;
+  }
+
+  #bed_avail tr{color: white;}
+  #bed_avail td {padding: 20px;text-align: center;font-size: 20px;}
+  #bed_avail td:hover {color: black;background-color: #ddd;font-size:25px;}
+  #bed_avail th {
+    padding: 20px;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+  }
+  .button { 
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    border: 2px solid #008CBA;
+    border-radius: 10px;
+  }
+
+  .button2:hover {
+    background-color: #008CBA;
+    color: white;
+  }
+  .bgcolor {
+    background-color: purple;
+    transition: all ease-in-out 300ms;
+    width: 100%;
+  }
+  </style>
+  <script>
+    function changeBg()
+    {
+      let navbar= document.getElementById("navbar");
+      let scrollbar= window.scrollY;
+      if (scrollbar < 80){
+        navbar.classList.remove("bgcolor");
+      }
+      else{
+        navbar.classList.add("bgcolor")
+      }
+    }window.addEventListener('scroll', changeBg);
+  </script>
+  <body ng-app="myApp">
+    <div ng-include="'/Hospitalnavbar'"></div>
+    <br><br><br><br>
+    <br><br><br><br>
+    <div ng-controller="myController">
+      <center>
+      <input type="text" style="text-align:left;border: 1px solid black;height:40px;width:200px;background:transparent;color:white;font-size:18px;" ng-model="inp_det" placeholder="Enter the Patient Name" />
+      <span style="width: 100px;color:white">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" style="text-align:left;border: 1px solid black;height:40px;width:200px;background:transparent;color:white;font-size:18px;" ng-model="inp_det1" placeholder="Enter the Doctor Name" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span>
+      <a href="/appointment_reply" target="_blank"><button class="button button2">Accept/Deny</button></a>
+      <div id="summa" style="height:100vh;width:100%;overflow:auto">
+        <br><br>
+        <table id='bed_avail'>
+          <tr style='background: linear-gradient(to right, #0f0c29, #302b63, #24243e);'>
+            <th style="cursor: pointer;" ng-click="orderfn('id')">Id</th>
+            <th style="cursor: pointer;" ng-click="orderfn('name')">Name</th>
+            <th style="cursor: pointer;" ng-click="orderfn('phone')">Phone</th>
+            <th style="cursor: pointer;" ng-click="orderfn('email')">Email</th>
+            <th style="cursor: pointer;" ng-click="orderfn('age')">Age</th>
+            <th style="cursor: pointer;" ng-click="orderfn('description')">Description</th>
+            <th style="cursor: pointer;" ng-click="orderfn('date')">Date</th>
+            <th style="cursor: pointer;" ng-click="orderfn('hospital')">Hospital Name</th>
+          </tr>
+          <tr ng-repeat = "detail in details | filter: {name:inp_det} | filter: {hospital:inp_det1} | orderBy: cate">
+            <td>{{detail.id}}</td>
+            <td>{{detail.name}}</td>
+            <td>{{detail.phone}}</td>
+            <td>{{detail.email}}</td>
+            <td>{{detail.age}}</td>
+            <td>{{detail.problem}}</td>
+            <td>{{detail.date}}</td>
+            <td>{{detail.hospital}}</td>
+          </tr>
+        </table>
+        <br><br>
+      </div>
+      </center>
+      </div>
+    </body>
+    <script>
+      var x = JSON.parse("<%= data %>".replaceAll("&#34;",'"'));
+  var app = angular.module("myApp",[]);
+  app.controller("myController",function($scope) {
+    $scope.details = x;
+  
+    $scope.orderfn = function(x1) {
+      $scope.cate = x1;
+    }
+  });
+    </script>
+  </html>
+  
+</html>
